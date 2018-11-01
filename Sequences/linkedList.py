@@ -87,4 +87,30 @@ class LinkedList:
         return result
     
     def __contains__(self, item):
-        
+        cursor = self.first.getItem()
+        while cursor and cursor != item:
+            cursor = cursor.next().getItem()
+        return cursor
+    
+    def append(self, item):
+        node = LinkedList.__Node(item)
+        self.last.setNext(node)
+        self.last = node
+        self.numItems +=1
+    
+def main():
+    lst =LinkedList()
+    for i in range(100):
+        lst.append(i)
+    lst2 = LinkedList(lst)
+
+    print(lst)
+    print(lst2)
+
+    if lst == lst2:
+        print("Test 1 Passed")
+    else:
+        print("Test 1 failed")
+    
+if __name__ == "__main__":
+    main()
